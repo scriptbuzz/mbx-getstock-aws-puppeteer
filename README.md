@@ -60,8 +60,7 @@ This solution guide assumes some familiarty with the various components and pack
 
 **Create API Gateway***
 * Create a new RESTFUL API
-* create Resource "url"
-* Create Method
+* create Resource "stock"
 
 **Test Web Capture**
 * From your browser, enter your API endpoint. The format should look similar to the following url but wiht your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN

@@ -3,7 +3,7 @@ Updated: 10/25/2020 by Mike Bitar
 
 Description: This Lambda function is part of a serverless solution that leverages the AWS cloud to perform web data collection in text and image formats using Puppeteer to get a stock value as well as return a captured image of the stock page from Yahoo Finance webpage. The Lambda function is invoked from an API Gateway endpoint with a path /stock/STOCK_LABEL, replace stock label with AMZN, NVDA, TXN, etc. 
 
-Note: Replace my AWS resouce names and other environmental constants with your values.  
+Note: Replace AWS resouce names and other environmental constants with the appropriate values.  
 */
 
 console.log('Loading webget function');
@@ -36,8 +36,8 @@ exports.handler = async(event, context, callback) => {
   var event_path = JSON.stringify(event.path);
   
   console.log('event_path full: ', event_path);
-  console.log('event.pathParameters.proxy:  ', JSON.stringify(event.pathParameters.proxy));
-  STOCK = JSON.stringify(event.pathParameters.proxy);
+
+  STOCK = JSON.stringify(event.pathParameters.symbol);
   console.log('STOCK:  ' + STOCK);
   
   STOCK = STOCK.replace(/\"/g, ""); // remove double-quotes returned by API Gateway  

@@ -52,7 +52,7 @@ This solution guide assumes some familiarty with the various components and pack
 **Create Lambda Function**
 * Select NodeJs v12 as the language
 * Select Layer 
-* Set RAM to 1600 and Duration to 1 minute. You can decide which values work best for you. 
+* Set RAM to 1600 and Duration to 3 minute. You can decide which values work best for you. 
 
 **Create API Gateway***
 * Create a new RESTFUL API
@@ -60,7 +60,7 @@ This solution guide assumes some familiarty with the various components and pack
 * Create Method
 
 **Test Web Capture**
-* From your browser, enter your API endpoint. The format should look similar to the following url but wiht your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/url/https://www.weather.gov/
+* From your browser, enter your API endpoint. The format should look similar to the following url but wiht your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
 
 **References**
 * Puppeteer

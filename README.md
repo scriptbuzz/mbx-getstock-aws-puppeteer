@@ -38,9 +38,9 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 **Solution Outline**
 
-* Update the Lambda function code with names of the the S3 bucket and DynamoDB table that you will create for this solution in the next steps:
-  * const dbname = 'mbx-getstock'; 
-  * const dstBucket = 'mbx-getstock'; 
+* Update the Lambda function with names of the the S3 bucket and DynamoDB table that you will create for this solution in the next steps:
+  * const dbname = 'your table name'; 
+  * const dstBucket = 'your s3 bucket name'; 
 
 * Log-in to your AWS Account.
 * Create an S3 Bucket.
@@ -75,7 +75,7 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 **Test The Solution**
 
-* From your browser, enter the API Gateway endpoint. The format should look similar to the following url but with your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
+* From your browser, enter the API Gateway endpoint. The format should look similar to the following url but with your specific account and region info: https:// 111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
 
 <img src="./assets/mbx-invoke-00001.png" width="600">
 

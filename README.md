@@ -12,12 +12,14 @@ When it comes to web-based data sources, typicall data can be collected via APIs
 
 This solution guide demonstrates two key features of Puppteer: 
 
+* Create 
 * Capture a web page into an image as PNG and JPG file. In this solution, I will capture the stock info page from Yahoo Finance webpage. 
 * Capture textual content from a webpage. I will capture the stock value in text format from Yahoo Finance webpage 
 * Can be invoked manually from a user browser and/or via scheduled invocation using AWS EventBridge.
 * If captured from a user browser, the solution will return the stock value to the user. 
 * Store the capured image in S3.
 * Store the stock value, date/time stamp, and link to the captured image in S3. 
+* Create EventBridge Rules to invoke the web getter for a number of stocks. 
 
 two seperate function. captures a screen image from a website URL provided by the user. The captured webpage image is saved into an S3 bucket in the user's AWS account.  The solution is invoked by a RESTful API managed by the Amazon API Gateway service. The processing is handled by a Lambda function which invokes the Puppeteer library. The solution can be modified easily to capture textual content instead of bitmap images. NOTE: This is a proof of concept guide. For production workloads, please follow established security best preactices for architectinbg solutions in the AWS cloud. 
 
@@ -38,11 +40,13 @@ two seperate function. captures a screen image from a website URL provided by th
 **Solution Outline**
 
 * Log-in to your AWS Account
-* Create an API and expose an endpoint in the API Gateway
-* Create a Lambda Layer to host Puppeteer
-* Create an S3 bucket to host captured images
-* Assign needed permissions/roles to services
-* Invoke the API Gateway endpoint with the requested webpage URLs
+* S3 Bucket: To host the captured web images
+* DYnamoDB table to store the stock values. 
+* API Gateway: REST API to GET a stock ymbol. 
+* Lambda: Perform the needed logic to invoke Puppeteer and store returned stock info. 
+* IAM: Assign needed permissions/roles to solution services.
+* EventBridge: Invoke the API Gateway endpoint with different stock symbols on a schedule basis
+* Broswer: Enter the API Gateway endpoint with a stock symbol. The solution will return the value of the stock. 
 
 **Step By Step Instructions**
 

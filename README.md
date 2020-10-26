@@ -1,7 +1,7 @@
 # mbx-getstock-aws-puppeteer
 A serverless solution to automate gathering stock info from the web using Puppeteer on AWS. The solution leverages AWS services such as Lambda, EventBridge, API Gateway, S3, and DynamoDB.
  
-![serverless puppeteer](./assets/mbx-aws-lambda-puppeteer.jpg)
+<img src="./assets/mbx-aws-lambda-puppeteer.jpg" width="800">
 
 **Background**
 
@@ -13,7 +13,7 @@ When it comes to web-based data sources, typically data can be collected via API
 
 This serverless solution is triggered manually or periodically to collect stock info from the Yahoo Finance website. You pass a stock symbol to a REST endpoint and the solution will return back and saves the value of the stock as well as a image webpage capture of the latest stock information page. This is an example of a captured webpage for the AMZN stock symbol.
 
-![Amazon stock](./assets/mbx-amazn-stock.png)
+<img src="./assets/mbx-amazn-stock.png" width="600">
 
 The solution can be invoked manually from a browser, for example, or via a scheduled invocation using EventBridge. The REST API is managed by the Amazon API Gateway service which exposes an endpoint. The processing is handled by a Lambda function which calls the Puppeteer library packages in a Lambda Layer. The returned results are passed back to the endpoint as a response document, as well as stored in DynamoDB and S3. The solution can be modified easily to collect data from almost any website. 
 
@@ -36,7 +36,6 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 * CloudWatch: This is the core monitoring service in the AWS cloud. 
 
-
 **Solution Outline**
 
 * Log-in to your AWS Account.
@@ -48,11 +47,11 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 * Create a REST API using the API Gateway using the following structure. 
 
-![API Gateway](./assets/mbx-api-00001.png)
+<img src="./assets/mbx-api-00001.png" width="600">
 
 * Setup Lambda Integration for the API
-  
- ![API Gateway](./assets/mbx-api-00003.png) 
+   
+<img src="./assets/mbx-api-00003.png" width="600">
  
 * IAM: Assign needed permissions/roles to solution services.
 * EventBridge: Invoke the API Gateway endpoint with different stock symbols on a schedule basis

@@ -1,41 +1,44 @@
 # mbx-getstock-aws-puppeteer
-A serverless solution to gather stock info from the web using Puppeteer on AWS
+A serverless solution to automate gathering stock info from the web using Puppeteer on AWS.
 
 
 **Background**
 
-Data analytics, and other data processing solutions, rely on a rich set of data sources to hydrate data lakes and data warehouses. Sometimes this data is readly available in the form of structed databases and semi-structured datasets. Other times it has to be collected from remote sources via streaming solutions or API calls. 
+Data analytics, and other data processing solutions, rely on a rich set of data sources to hydrate data lakes and data warehouses. Oftentimes this data is readily available in the form of structured databases and semi-structured datasets. Other times it has to be collected from remote sources via streaming solutions or API calls. 
 
-When it comes to web-based data sources, typicall data can be collected via APIs such as those published by social media providers. But not every data source exposes APIs or has APIs that are developer-friendly. In those cases, web scraping can be a practicle solution. Many tools exist to support web scraping. One of the more popular tools is Puppeteer, which is commonly used to automate testing of web pages, but has been repurposed for web data capture. By leveraing the AWS cloud, data collected via Puppeteer can benefit from sclabality, high availablity, and cost effective compute and storage infrastrcuture. 
+When it comes to web-based data sources, typically data can be collected via APIs such as those published by social media providers. But not every data source exposes APIs or has APIs that are developer friendly. In such cases, web scraping can be a practical solution. Many tools exist to support web scraping. One of the more popular tools is Puppeteer, which is commonly used to automate testing of websites, but has been repurposed for web data capture. By leveraging the AWS cloud, we can deploy a serverless data collected solution using Puppeteer. This allows us to scale compute and storage resources seamlessly while ensuring high availability using the on-demand cost model. 
 
 **Overview of Solution**
 
-This solution guide demonstrates two key features of Puppteer: 
+This serverless solution is triggered manually or periodically to collect stock info from the Yahoo Finance website. You pass a stock symbol to a REST endpoint and the solution will return back and saves the value of the stock as well as a screen capture of the latest stock information page. 
 
-* Create 
-* Capture a web page into an image as PNG and JPG file. In this solution, I will capture the stock info page from Yahoo Finance webpage. 
-* Capture textual content from a webpage. I will capture the stock value in text format from Yahoo Finance webpage 
-* Can be invoked manually from a user browser and/or via scheduled invocation using AWS EventBridge.
-* If captured from a user browser, the solution will return the stock value to the user. 
-* Store the capured image in S3.
-* Store the stock value, date/time stamp, and link to the captured image in S3. 
-* Create EventBridge Rules to invoke the web getter for a number of stocks. 
+IMAGE OF YAHOO STOCK AMZN
 
-two seperate function. captures a screen image from a website URL provided by the user. The captured webpage image is saved into an S3 bucket in the user's AWS account.  The solution is invoked by a RESTful API managed by the Amazon API Gateway service. The processing is handled by a Lambda function which invokes the Puppeteer library. The solution can be modified easily to capture textual content instead of bitmap images. NOTE: This is a proof of concept guide. For production workloads, please follow established security best preactices for architectinbg solutions in the AWS cloud. 
-
-**Architectural Diagram**
-
+The solution leverages AWS services such as Lambda, EventBridge, API Gateway, S3, and DynamoDB.
+ 
 ![serverless puppeteer](./mbx-aws-lambda-puppeteer.jpg)
+
+The solution can be invoked manually from a browser, for example, or via a scheduled invocation using EventBridge. The REST API is managed by the Amazon API Gateway service which exposes an endpoint. The processing is handled by a Lambda function which calls the Puppeteer library packages in a Lambda Layer. The returned results are passed back to the endpoint as a response document, as well as stored in DynamoDB and S3. The solution can be modified easily to collect data from almost any website. 
+
 
 **Solution Components**
 
-* Puppeteer: Node library which provides a high-level API to control Chrome or Chromium over the DevTools Protocol. Puppeteer runs headless by default, but can be configured to run full (non-headless) Chrome or Chromium. https://pptr.dev/
+* Puppeteer: A Node library which provides a high-level API to control Chrome or Chromium over the DevTools Protocol. Puppeteer runs headless by default but can be configured to run full (non-headless) Chrome or Chromium. https://pptr.dev/
 
-* Amazon API Gateway: AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs. In this solution, it will expose an endpoint that when invoked, it will trigger a Lambda function that will process the request to capture a webpage, save the captured image to an S3 bucket. 
+* Amazon API Gateway: AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs. In this solution, it will expose an endpoint that when invoked, it will trigger a Lambda function that will process the request to capture a webpage, save the captured image to an S3 bucket and DynamoDB table.
 
-* AWS Lambda: Serverless compute service that executes the NodeJS logic to process the webpage capture request and S3 storage. 
+* Lambda: Serverless compute service that executes the NodeJS logic, using Puppeteer, to process the webpage data and image capture request. 
 
-* Amazon S3: Highly durable storage to host screen captures. 
+* S3: Serverless object storage to save stock info screen captures. The name of the image capture file is a concatenation of the datetime stamp and stock symbol. 
+
+* DynamoDB: Serverless NoSQL database to store basic stock info. I am storing a datetime stamp, the stock symbol, the stock value, and the url to the captured image in S3. 
+
+* EventBridge: Serverless scheduler that can call a number of AWS services and pass parameters. I am using this service to periodically call the API Gateway endpoint with different stock symbols. 
+
+* IAM: This is the foundational authentication and authorization service in the AWS cloud. 
+
+* CloudWatch: This is the core monitoring service in the AWS cloud. 
+
 
 **Solution Outline**
 

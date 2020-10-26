@@ -79,6 +79,19 @@ This solution guide assumes some familiarty with the various components and pack
 **Test Web Capture**
 * From your browser, enter your API endpoint. The format should look similar to the following url but wiht your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
 
+![Test Solution](./assets/mbx-invoke-00001.png)
+
+* From the API Gateway test panel.
+
+![Test Solution ](./assets/mbx-invoke-00002.png)
+
+* You can also use EventBridge to schedule invokation of API calls
+
+
+
+
+
+
 **References**
 * Puppeteer https://github.com/puppeteer/puppeteer
 * Deploy chrome-aws-lambda by  Alix Axel https://github.com/alixaxel/chrome-aws-lambda

@@ -78,21 +78,23 @@ This solution guide assumes some familiarty with the various components and pack
 **Test Web Capture**
 * From your browser, enter your API endpoint. The format should look similar to the following url but wiht your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
 
-![Test Solution](./assets/mbx-invoke-00001.png)
+
+<img src="./assets/mbx-invoke-00001.png" width="800">
+
 
 * From the API Gateway test panel.
 
-![Test Solution ](./assets/mbx-invoke-00002.png)
+<img src="./assets/mbx-invoke-00002.png" width="800">
 
 * You can also use EventBridge to schedule invokation of API calls
 
 After the API is invoked successfully with a stock symbol, you will find a DynamoDB entry containing a timestamp, stock symbol, stock value, and a link to the captured webimage in your solution S3 bucket.
 
-![Test Solution ](./assets/mbx-dynamodb-00002.png)
+<img src="./assets/mbx-dynamodb-00002.png" width="800">
 
 Click on the relevent entry to see the full table record for the stock.
 
-![Test Solution ](./assets/mbx-dynamodb-00001.png)
+<img src="./assets/mbx-dynamodb-00001.png" width="800">
 
 Check the S3 bucket for a file that corresponds to the one listed in the DynamoDB entry. 
 
@@ -101,7 +103,8 @@ Check the S3 bucket for a file that corresponds to the one listed in the DynamoD
 ![Test Solution ](./assets/mbx-s3-00002.png)
 
 If you open the image file, you should see the webpage captured image for the stock.
-![Test Solution ](./assets/mbx-s3-00001.png)
+
+<img src="./assets/mbx-s3-00001.png" width="800">
 
 **References**
 * Puppeteer https://github.com/puppeteer/puppeteer

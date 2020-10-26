@@ -18,6 +18,10 @@ This serverless solution is triggered manually or periodically to collect stock 
 
 <img src="./assets/mbx-amazn-stock.png" width="600">
 
+This is an example of a captured text data from the same webpage.
+
+<img src="./assets/mbx-dynamodb-00001a.png" width="600">
+
 The solution can be invoked manually from a browser, for example, or via a scheduled invocation using EventBridge. The REST API is managed by the Amazon API Gateway service which exposes a public endpoint. The processing is handled by a Lambda function which calls the Puppeteer library packages in a Lambda Layer. The returned results are passed back to the endpoint as a response document, as well as stored in DynamoDB and S3. The solution can be modified easily to collect data from other websites. 
 
 

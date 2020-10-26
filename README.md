@@ -1,5 +1,6 @@
 # mbx-getstock-aws-puppeteer
-This is an AWS hosted serverless solution to automate gathering stock info from the web using Puppeteer on AWS. The solution leverages AWS services such as Lambda, EventBridge, API Gateway, S3, and DynamoDB.
+
+This is an AWS hosted serverless solution to automate gathering stock info from the web using Puppeteer on AWS. The solution leverages AWS services such as Lambda, EventBridge, API Gateway, S3, and DynamoDB. Puppeteer is a versatile tool that lets you generate screenshots and PDFs of web pages, crawl Single-Page Applications and generate pre-rendered content, automate form submission, UI testing, keyboard input, and more.
  
 <img src="./assets/mbx-aws-lambda-puppeteer.jpg" width="800">
 

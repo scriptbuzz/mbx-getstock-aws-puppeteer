@@ -47,7 +47,7 @@ The solution can be invoked manually from a browser, for example, or via a sched
 * Log-in to your AWS Account.
 * Create an S3 Bucket.
 * Create a DynamoDB table with a partition key "timestamb" and type string. Keep other defaults. 
-* Create a Lambda Layer to host the chrome-aws-lambda binary. 
+* Create a Lambda Layer to host the chrome-aws-lambda binary. Follow this guide to build the package: https://github.com/scriptbuzz/mbx-getstock-aws-puppeteer
 
 <img src="./assets/mbx-lambda-00002.png" width="600">
 

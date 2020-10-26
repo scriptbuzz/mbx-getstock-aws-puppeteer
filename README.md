@@ -91,7 +91,7 @@ After the API is invoked successfully with a stock symbol, you will find a Dynam
 
 ![Test Solution ](./assets/mbx-dynamodb-00002.png)
 
-Click on the relevent entry to see the fill record.
+Click on the relevent entry to see the full table record for the stock.
 
 ![Test Solution ](./assets/mbx-dynamodb-00001.png)
 
@@ -100,6 +100,8 @@ Check the S3 bucket for a file that corresponds to the one listed in the DynamoD
 ![Test Solution ](./assets/mbx-s3-00004.png)
 ![Test Solution ](./assets/mbx-s3-00003.png)
 ![Test Solution ](./assets/mbx-s3-00002.png)
+
+If you open the image file, you should see the webpage captured image for the stock.
 ![Test Solution ](./assets/mbx-s3-00001.png)
 
 **References**

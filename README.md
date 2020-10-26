@@ -61,34 +61,18 @@ The solution can be invoked manually from a browser, for example, or via a sched
    
 <img src="./assets/mbx-api-00003.png" width="600">
  
-* IAM: Assign needed permissions/roles to solution services.
-* EventBridge: Invoke the API Gateway endpoint with different stock symbols on a schedule basis
+* EventBridge: Invoke the API Gateway endpoint with different stock symbols on a schedule basis.
+<img src="./assets/mbx-eventbridge-00003.png" width="600">
+<img src="./assets/mbx-eventbridge-00001.png" width="600">
+
 * Broswer: Enter the API Gateway endpoint with a stock symbol. The solution will return the value of the stock. 
 
-**Step By Step Instructions**
 
-This solution guide assumes some familiarty with the various components and packages involved. 
+**Test The Solution**
 
-**Create S3 Bucket**
-* Create an S3 bucket to host captured images. 
-* When web site image is captured, it will be saved using the name format [timestmp-capture].jpg
-* Create a Lambda Layer
-
-**Create Lambda Function**
-* Select NodeJs v12 as the language
-* Select Layer 
-* Set RAM to 1600 and Duration to 3 minute. You can decide which values work best for you. 
-
-**Create API Gateway***
-* Create a new RESTFUL API
-* create Resource "stock"
-
-**Test Web Capture**
-* From your browser, enter your API endpoint. The format should look similar to the following url but wiht your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
-
+* From your browser, enter the API Gateway endpoint. The format should look similar to the following url but wiht your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
 
 <img src="./assets/mbx-invoke-00001.png" width="600">
-
 
 * From the API Gateway test panel.
 

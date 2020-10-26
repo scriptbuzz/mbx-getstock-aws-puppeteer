@@ -75,7 +75,7 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 **Test The Solution**
 
-* From your browser, enter the API Gateway endpoint. The format should look similar to the following url but with your specific account and region info: https:// 111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
+* From your browser, enter the API Gateway endpoint. The format should look similar to the following url but with your specific account and region info: https:// 111111111.execute-api.us-east-1.amazonaws.com/dev/stock/IBM
 
 <img src="./assets/mbx-invoke-00001.png" width="600">
 

@@ -38,6 +38,10 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 **Solution Outline**
 
+* Update the Lambda function code with names of the the S3 bucket and DynamoDB table that you will create for this solution in the next steps:
+  * const dbname = 'mbx-getstock'; 
+  * const dstBucket = 'mbx-getstock'; 
+
 * Log-in to your AWS Account.
 * Create an S3 Bucket.
 * Create a DynamoDB table with a partition key "timestamb" and type string. Keep other defaults. 
@@ -52,6 +56,8 @@ The solution can be invoked manually from a browser, for example, or via a sched
 * Update the Lambda IAM role to authorize it to access DynamoDB and S3.
 
 <img src="./assets/mbx-lambda-00003.png" width="600">
+
+* Copy/Paste the code in the index.js file in this repo into the blank Lambda function code panel. 
 
 * Create a REST API using the API Gateway using the following structure. 
 

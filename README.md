@@ -39,10 +39,18 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 **Solution Outline**
 
-* Log-in to your AWS Account
-* S3 Bucket: To host the captured web images
-* DYnamoDB table to store the stock values. 
-* API Gateway: REST API to GET a stock ymbol. 
+* Log-in to your AWS Account.
+* Create an S3 Bucket.
+* Create a DynamoDB table with a partition key "timestamb" and type string. Keep other defaults.  
+* Create a REST API using the API Gateway using the following structure. 
+
+![API Gateway](./assets/mbx-api-00001.png)
+
+* Setup Lambda Integration for the API
+  
+ ![API Gateway](./assets/mbx-api-00003.png) 
+ 
+
 * Lambda: Perform the needed logic to invoke Puppeteer and store returned stock info. 
 * IAM: Assign needed permissions/roles to solution services.
 * EventBridge: Invoke the API Gateway endpoint with different stock symbols on a schedule basis

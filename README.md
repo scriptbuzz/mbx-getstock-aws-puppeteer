@@ -61,15 +61,15 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 * Copy/Paste the code in the index.js file in this repo into the blank Lambda function code panel. 
 
-* Create a REST API using the API Gateway using the following structure. 
+* Create a REST API using the API Gateway with the following structure. 
 
 <img src="./assets/mbx-api-00001.png" width="600">
 
-* Setup Lambda Integration for the API
+* Setup Lambda Integration for the API.
    
 <img src="./assets/mbx-api-00003.png" width="600">
  
-* EventBridge: Create a Rule per stock symbol. Use the API you have created in the API Gateway as a target. You can enter a cron expression or a frequency of execution to determine when or how often the API should be executed. For this solution, I have selected 15 minute  between Rule invocations. 
+* EventBridge: Create a Rule per stock symbol of interest. Use the API resouerce you have created in the API Gateway as a Target for the Rule. You can enter a cron expression or a frequency of execution to determine when or how often the API should be invoked. For this solution, I have selected 15 minute between Rule invocations. 
 
 <img src="./assets/mbx-eventbridge-00003.png" width="600">
 <img src="./assets/mbx-eventbridge-00001.png" width="600">
@@ -78,26 +78,25 @@ You can modify and experiment with different settings for this solution to suite
 
 **Test The Solution**
 
-* From your browser, enter the API Gateway endpoint. The format should look similar to the following url but with your specific account and region info: https:// 111111111.execute-api.us-east-1.amazonaws.com/dev/stock/IBM
+* From your browser, enter the API Gateway endpoint. The format should be similar to the following url but with your specific account and region info: https:// 111111111.execute-api.us-east-1.amazonaws.com/dev/stock/IBM
 
 <img src="./assets/mbx-invoke-00001.png" width="600">
 
-* From the API Gateway test panel.
+* From the API Gateway test panel, enter the stock symbol. Please note that sometime the requests time-out. Consider adding logic for retries. 
 
 <img src="./assets/mbx-invoke-00002.png" width="800">
 
 * You can also use EventBridge to schedule invocation of API calls
 
-After the API is invoked successfully with a stock symbol, you will find a DynamoDB entry containing a timestamp, stock symbol, stock value, and a link to the captured webpage image in your solution S3 bucket.
+After the API is invoked successfully with a stock symbol, you should find a DynamoDB entry containing a timestamp, stock symbol, stock value, and a link to the captured webpage image in your S3 bucket.
 
 <img src="./assets/mbx-dynamodb-00002.png" width="800">
 
-Click on the relevant entry to see the full table record for the stock.
+From your DynamoDB table, click on the relevant entry to see the full table record for the stock.
 
 <img src="./assets/mbx-dynamodb-00001.png" width="800">
 
-Check the S3 bucket for a file that corresponds to the one listed in the DynamoDB entry. 
-
+In your S3 bucket, look for a file that corresponds to the one listed in the DynamoDB entry for the stock symbol. 
 
 <img src="./assets/mbx-s3-00004.png" width="800">
 

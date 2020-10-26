@@ -51,7 +51,9 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 <img src="./assets/mbx-lambda-00002.png" width="600">
 
-* Create Lambda using the following settings: Node12, Duration: 3 min, RAM: 2048.
+* Create Lambda using the following settings: Node12, Duration: 3 min, RAM: 2048. 
+
+The magic code is: page.evaluate(() => document.querySelector().textContent). This call allows for the surgical extraction of data from webpages.  
 
 <img src="./assets/mbx-lambda-00004.png" width="600">
 

@@ -41,9 +41,17 @@ The solution can be invoked manually from a browser, for example, or via a sched
 * Log-in to your AWS Account.
 * Create an S3 Bucket.
 * Create a DynamoDB table with a partition key "timestamb" and type string. Keep other defaults. 
-* Create a Lambda Layer to host 
+* Create a Lambda Layer to host the chrome-aws-lambda binary. 
+
+<img src="./assets/mbx-lambda-00002.png" width="600">
+
 * Create Lambda using the following settings: Nodejs12, Duration: 3 min, RAM: 2048.
 
+<img src="./assets/mbx-lambda-00004.png" width="600">
+
+* Update the Lambda IAM role to authorize it to access DynamoDB and S3.
+
+<img src="./assets/mbx-lambda-00003.png" width="600">
 
 * Create a REST API using the API Gateway using the following structure. 
 

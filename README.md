@@ -82,4 +82,4 @@ This solution guide assumes some familiarty with the various components and pack
 **References**
 * Puppeteer https://github.com/puppeteer/puppeteer
 * Deploy chrome-aws-lambda by  Alix Axel https://github.com/alixaxel/chrome-aws-lambda
-* Anthony M: Web Scraper for Financial Data https://medium.com/@mcleod333/web-scraper-for-financial-data-657c9b973ec5
+* Web Scraper for Financial Data by Anthony M https://medium.com/@mcleod333/web-scraper-for-financial-data-657c9b973ec5

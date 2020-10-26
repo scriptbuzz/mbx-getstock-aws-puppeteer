@@ -61,11 +61,10 @@ The solution can be invoked manually from a browser, for example, or via a sched
    
 <img src="./assets/mbx-api-00003.png" width="600">
  
-* EventBridge: Invoke the API Gateway endpoint with different stock symbols on a schedule basis.
+* EventBridge: Create a Rule per stock symbol. Use the API you have created in the API Gatway as a target. You can enter a cron expression or a frequency of execution to determine when or how often the API should be executed. For this solution, I have selected 15 minute  between Rule invokations. 
+
 <img src="./assets/mbx-eventbridge-00003.png" width="600">
 <img src="./assets/mbx-eventbridge-00001.png" width="600">
-
-* Broswer: Enter the API Gateway endpoint with a stock symbol. The solution will return the value of the stock. 
 
 
 **Test The Solution**

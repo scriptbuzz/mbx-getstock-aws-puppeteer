@@ -87,7 +87,7 @@ This solution guide assumes some familiarty with the various components and pack
 * From your browser, enter your API endpoint. The format should look similar to the following url but wiht your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
 
 
-<img src="./assets/mbx-invoke-00001.png" width="800">
+<img src="./assets/mbx-invoke-00001.png" width="600">
 
 
 * From the API Gateway test panel.

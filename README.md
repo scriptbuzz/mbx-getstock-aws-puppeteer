@@ -1,5 +1,5 @@
 # mbx-getstock-aws-puppeteer
-A serverless solution to automate gathering stock info from the web using Puppeteer on AWS. The solution leverages AWS services such as Lambda, EventBridge, API Gateway, S3, and DynamoDB.
+This is an AWS hosted serverless solution to automate gathering stock info from the web using Puppeteer on AWS. The solution leverages AWS services such as Lambda, EventBridge, API Gateway, S3, and DynamoDB.
  
 <img src="./assets/mbx-aws-lambda-puppeteer.jpg" width="800">
 
@@ -61,7 +61,7 @@ The solution can be invoked manually from a browser, for example, or via a sched
    
 <img src="./assets/mbx-api-00003.png" width="600">
  
-* EventBridge: Create a Rule per stock symbol. Use the API you have created in the API Gatway as a target. You can enter a cron expression or a frequency of execution to determine when or how often the API should be executed. For this solution, I have selected 15 minute  between Rule invokations. 
+* EventBridge: Create a Rule per stock symbol. Use the API you have created in the API Gateway as a target. You can enter a cron expression or a frequency of execution to determine when or how often the API should be executed. For this solution, I have selected 15 minute  between Rule invocations. 
 
 <img src="./assets/mbx-eventbridge-00003.png" width="600">
 <img src="./assets/mbx-eventbridge-00001.png" width="600">
@@ -69,7 +69,7 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 **Test The Solution**
 
-* From your browser, enter the API Gateway endpoint. The format should look similar to the following url but wiht your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
+* From your browser, enter the API Gateway endpoint. The format should look similar to the following url but with your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
 
 <img src="./assets/mbx-invoke-00001.png" width="600">
 
@@ -77,13 +77,13 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 <img src="./assets/mbx-invoke-00002.png" width="800">
 
-* You can also use EventBridge to schedule invokation of API calls
+* You can also use EventBridge to schedule invocation of API calls
 
-After the API is invoked successfully with a stock symbol, you will find a DynamoDB entry containing a timestamp, stock symbol, stock value, and a link to the captured webimage in your solution S3 bucket.
+After the API is invoked successfully with a stock symbol, you will find a DynamoDB entry containing a timestamp, stock symbol, stock value, and a link to the captured webpage image in your solution S3 bucket.
 
 <img src="./assets/mbx-dynamodb-00002.png" width="800">
 
-Click on the relevent entry to see the full table record for the stock.
+Click on the relevant entry to see the full table record for the stock.
 
 <img src="./assets/mbx-dynamodb-00001.png" width="800">
 
@@ -102,5 +102,5 @@ If you open the image file, you should see the webpage captured image for the st
 
 **References**
 * Puppeteer https://github.com/puppeteer/puppeteer
-* Deploy chrome-aws-lambda by  Alix Axel https://github.com/alixaxel/chrome-aws-lambda
+* Deploy chrome-aws-lambda by Alix Axel https://github.com/alixaxel/chrome-aws-lambda
 * Web Scraper for Financial Data by Anthony M https://medium.com/@mcleod333/web-scraper-for-financial-data-657c9b973ec5

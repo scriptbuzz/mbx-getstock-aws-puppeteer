@@ -98,9 +98,12 @@ Click on the relevent entry to see the full table record for the stock.
 
 Check the S3 bucket for a file that corresponds to the one listed in the DynamoDB entry. 
 
-![Test Solution ](./assets/mbx-s3-00004.png)
-![Test Solution ](./assets/mbx-s3-00003.png)
-![Test Solution ](./assets/mbx-s3-00002.png)
+
+<img src="./assets/mbx-s3-00004.png" width="800">
+
+<img src="./assets/mbx-s3-00003.png" width="800">
+
+<img src="./assets/mbx-s3-00002.png" width="800">
 
 If you open the image file, you should see the webpage captured image for the stock.
 

@@ -89,18 +89,18 @@ This solution guide assumes some familiarty with the various components and pack
 
 After the API is invoked successfully with a stock symbol, you will find a DynamoDB entry containing a timestamp, stock symbol, stock value, and a link to the captured webimage in your solution S3 bucket.
 
-![Test Solution ](./mbx-dynamodb-00002.png)
+![Test Solution ](./assets/mbx-dynamodb-00002.png)
 
 Click on the relevent entry to see the fill record.
 
-![Test Solution ](./mbx-dynamodb-00001.png)
+![Test Solution ](./assets/mbx-dynamodb-00001.png)
 
 Check the S3 bucket for a file that corresponds to the one listed in the DynamoDB entry. 
 
-![Test Solution ](./mbx-s3-00004.png)
-![Test Solution ](./mbx-s3-00003.png)
-![Test Solution ](./mbx-s3-00002.png)
-![Test Solution ](./mbx-s3-00001.png)
+![Test Solution ](./assets/mbx-s3-00004.png)
+![Test Solution ](./assets/mbx-s3-00003.png)
+![Test Solution ](./assets/mbx-s3-00002.png)
+![Test Solution ](./assets/mbx-s3-00001.png)
 
 **References**
 * Puppeteer https://github.com/puppeteer/puppeteer

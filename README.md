@@ -41,7 +41,11 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 * Log-in to your AWS Account.
 * Create an S3 Bucket.
-* Create a DynamoDB table with a partition key "timestamb" and type string. Keep other defaults.  
+* Create a DynamoDB table with a partition key "timestamb" and type string. Keep other defaults. 
+* Create a Lambda Layer to host 
+* Create Lambda using the following settings: Nodejs12, Duration: 3 min, RAM: 2048.
+
+
 * Create a REST API using the API Gateway using the following structure. 
 
 ![API Gateway](./assets/mbx-api-00001.png)
@@ -50,8 +54,6 @@ The solution can be invoked manually from a browser, for example, or via a sched
   
  ![API Gateway](./assets/mbx-api-00003.png) 
  
-
-* Lambda: Perform the needed logic to invoke Puppeteer and store returned stock info. 
 * IAM: Assign needed permissions/roles to solution services.
 * EventBridge: Invoke the API Gateway endpoint with different stock symbols on a schedule basis
 * Broswer: Enter the API Gateway endpoint with a stock symbol. The solution will return the value of the stock. 
@@ -78,5 +80,6 @@ This solution guide assumes some familiarty with the various components and pack
 * From your browser, enter your API endpoint. The format should look similar to the following url but wiht your specific account and region info: https://111111111.execute-api.us-east-1.amazonaws.com/dev/stock/AMZN
 
 **References**
-* Puppeteer
-
+* Puppeteer https://github.com/puppeteer/puppeteer
+* Deploy chrome-aws-lambda by  Alix Axel https://github.com/alixaxel/chrome-aws-lambda
+* Anthony M: Web Scraper for Financial Data https://medium.com/@mcleod333/web-scraper-for-financial-data-657c9b973ec5

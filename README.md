@@ -24,13 +24,13 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 * Puppeteer: A Node library which provides a high-level API to control Chrome or Chromium over the DevTools Protocol. Puppeteer runs headless by default but can be configured to run full (non-headless) Chrome or Chromium. https://pptr.dev/
 
-* Amazon API Gateway: AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs. In this solution, it will expose an endpoint that when invoked, it will trigger a Lambda function that will process the request to capture a webpage, save the captured image to an S3 bucket and DynamoDB table.
+* Amazon API Gateway: AWS service for provisioning REST, HTTP, and WebSocket APIs. In this solution, it will expose a public endpoint that when invoked, will trigger a Lambda function that will process the request to gather the stock info and capture a webpage image, then save the collected data to an S3 bucket and DynamoDB table.
 
-* Lambda: Serverless compute service that executes the NodeJS logic, using Puppeteer, to process the webpage data and image capture request. 
+* Lambda: Serverless compute service that executes the Node logic, using Puppeteer, to process the webpage data and image capture requests. 
 
-* S3: Serverless object storage to save stock info screen captures. The name of the image capture file is a concatenation of the datetime stamp and stock symbol. 
+* S3: Serverless object storage to save the requested stock info webpage image captures. The name of the image capture file is a concatenation of the datetime stamp and stock symbol. 
 
-* DynamoDB: Serverless NoSQL database to store basic stock info. I am storing a datetime stamp, the stock symbol, the stock value, and the url to the captured image in S3. 
+* DynamoDB: Serverless NoSQL database used to store basic stock info. I am storing a datetime stamp, the stock symbol, the stock value, and the url to the captured image in S3. 
 
 * EventBridge: Serverless scheduler that can call a number of AWS services and pass parameters. I am using this service to periodically call the API Gateway endpoint with different stock symbols. 
 
@@ -51,7 +51,7 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 <img src="./assets/mbx-lambda-00002.png" width="600">
 
-* Create Lambda using the following settings: Nodejs12, Duration: 3 min, RAM: 2048.
+* Create Lambda using the following settings: Node12, Duration: 3 min, RAM: 2048.
 
 <img src="./assets/mbx-lambda-00004.png" width="600">
 
@@ -74,6 +74,7 @@ The solution can be invoked manually from a browser, for example, or via a sched
 <img src="./assets/mbx-eventbridge-00003.png" width="600">
 <img src="./assets/mbx-eventbridge-00001.png" width="600">
 
+You can modify and experiment with different settings for this solution to suite your project needs. Also, please follow best practices when provisioning cloud resources such as least privilege permissions, encryption at rest and in transit, and so on.
 
 **Test The Solution**
 

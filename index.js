@@ -8,14 +8,14 @@ Note: Replace AWS resouce names and other environmental constants with the appro
 
 console.log('Loading webget function');
 
-const chromium = require('chrome-aws-lambda'); // Ensure this is availble in a Lambda Layer
+const chromium = require('chrome-aws-lambda'); // Ensure this is available in a Lambda Layer
 
 const fs = require('fs');
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
-var ddb = new AWS.DynamoDB.DocumentClient();
+const ddb = new AWS.DynamoDB.DocumentClient();
 
-const target_utl = 'https://finance.yahoo.com/quote/' ;
+const target_url = 'https://finance.yahoo.com/quote/' ;
 const api_gateway_path = '/stock/'; // expected API Gateway path prefix
 const dbname = 'mbx-getstock'; // dynamoDB table name
 const save_path = '/tmp/'; // Lambda's tmp folder where captured images are saved before uploaded to S3
@@ -23,12 +23,10 @@ const dstBucket = 'mbx-getstock'; // Replace with your S3 bucket name. S3 bucket
 const image_format = '.jpg';
 const dstKey = 'capture'+image_format; // default screen capture file name. Will be prefixed with a timestamp
 
-
-var STOCK = null; // hold stock label passed from API call
-
 exports.handler = async(event, context, callback) => {
   let result = null;
   let browser = null;
+  let price = null;
 
   console.log('Received event:', JSON.stringify(event, null, 2));
   console.log('event.path: ', event.path);
@@ -37,10 +35,8 @@ exports.handler = async(event, context, callback) => {
   
   console.log('event_path full: ', event_path);
 
-  STOCK = JSON.stringify(event.pathParameters.symbol);
+  const STOCK = event.pathParameters.symbol;
   console.log('STOCK:  ' + STOCK);
-  
-  STOCK = STOCK.replace(/\"/g, ""); // remove double-quotes returned by API Gateway  
 
   try {
     browser = await chromium.puppeteer.launch({
@@ -52,7 +48,7 @@ exports.handler = async(event, context, callback) => {
     });
 
     let page = await browser.newPage();
-    let url = target_utl + STOCK;
+    const url = target_url + STOCK;
 
     console.log('URL:  ' + url);
 
@@ -60,7 +56,7 @@ exports.handler = async(event, context, callback) => {
     await page.waitForSelector('#quote-market-notice');
     
     // get stock price
-    var price = await page.evaluate(() => document.querySelector("#quote-header-info > div.Pos\\(r\\) > div > div > span").textContent);
+    price = await page.evaluate(() => document.querySelector("#quote-header-info > div.Pos\\(r\\) > div > div > span").textContent);
     console.log("STOCK PRICE:", price);
     await page.screenshot({ path: save_path + dstKey }); // save captured image in tmp
 
@@ -83,25 +79,23 @@ exports.handler = async(event, context, callback) => {
 // S3 storage
 
   // upload captured image from tmp to S3 bucket
-  fs.readFile(save_path + dstKey, function(err, data) {
-    if (err) { throw err; }
+  try {
+    const data = fs.readFileSync(save_path + dstKey);
+    const base64data = Buffer.from(data, 'binary');
 
-    var base64data = new Buffer(data, 'binary');
-
-    var s3 = new AWS.S3();
-    s3.putObject({
+    await s3.putObject({
       Bucket: dstBucket,
       Key: nowIOS + '-' + STOCK + image_format, 
       Body: base64data
-    }, function(resp) {
-      console.log('Done');
-    });
-
-  });
+    }).promise();
+    console.log('S3 upload complete');
+  } catch (err) {
+    console.log('Error uploading to S3: ', err.message);
+  }
 
 // DynamoDB storage
 
-  // Build paramaters
+  // Build parameters
   var params = {
     TableName: dbname,
     Item: {
@@ -112,7 +106,7 @@ exports.handler = async(event, context, callback) => {
     }
   };
 
-  // save paramaters in dynamodb
+  // save parameters in dynamodb
   try {
     await ddb.put(params).promise();
   }

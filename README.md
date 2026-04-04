@@ -45,13 +45,13 @@ The solution can be invoked manually from a browser, for example, or via a sched
 
 **Solution Outline**
 
-* Update the Lambda function with names of the the S3 bucket and DynamoDB table that you will create for this solution in the next steps:
+* Update the Lambda function with names of the S3 bucket and DynamoDB table that you will create for this solution in the next steps:
   * const dbname = 'your table name'; 
   * const dstBucket = 'your s3 bucket name'; 
 
 * Log-in to your AWS Account.
 * Create an S3 Bucket.
-* Create a DynamoDB table with a partition key "timestamb" and type string. Keep other defaults. 
+* Create a DynamoDB table with a partition key "timestamp" and type string. Keep other defaults. 
 * Create a Lambda Layer to host the chrome-aws-lambda binary. Follow this guide to build the package: https://github.com/alixaxel/chrome-aws-lambda
 
 <img src="./assets/mbx-lambda-00002.png" width="600">
@@ -76,12 +76,12 @@ The magic code is: page.evaluate(() => document.querySelector().textContent). Th
    
 <img src="./assets/mbx-api-00003.png" width="600">
  
-* EventBridge: Create a Rule per stock symbol of interest. Use the API resouerce you have created in the API Gateway as a Target for the Rule. You can enter a cron expression or a frequency of execution to determine when or how often the API should be invoked. For this solution, I have selected 15 minute between Rule invocations. 
+* EventBridge: Create a Rule per stock symbol of interest. Use the API resource you have created in the API Gateway as a Target for the Rule. You can enter a cron expression or a frequency of execution to determine when or how often the API should be invoked. For this solution, I have selected 15 minute between Rule invocations. 
 
 <img src="./assets/mbx-eventbridge-00003.png" width="600">
 <img src="./assets/mbx-eventbridge-00001.png" width="600">
 
-You can modify and experiment with different settings for this solution to suite your project needs. Also, please follow best practices when provisioning cloud resources such as least privilege permissions, encryption at rest and in transit, and so on.
+You can modify and experiment with different settings for this solution to suit your project needs. Also, please follow best practices when provisioning cloud resources such as least privilege permissions, encryption at rest and in transit, and so on.
 
 **Test The Solution**
 

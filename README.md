@@ -1,7 +1,17 @@
 # mbx-getstock-aws-puppeteer
 
-This is an AWS hosted serverless solution to automate gathering stock info from the web using Puppeteer on AWS. The solution leverages AWS services such as Lambda, EventBridge, API Gateway, S3, and DynamoDB. Puppeteer is a versatile tool that lets you generate screenshots and PDFs of web pages, crawl Single-Page Applications and generate pre-rendered content, automate form submission, UI testing, keyboard input, and more.
- 
+## Introduction
+
+**mbx-getstock-aws-puppeteer** is a fully automated, serverless solution designed to gather real-time financial data from the web. It is hosted entirely on AWS cloud infrastructure. By triggering an API endpoint with a target stock symbol, the system will dynamically navigate the Yahoo Finance website, extract the current stock value, and capture a high-resolution screenshot of the live page. This provides a robust, hands-off approach to periodic web data extraction and archivation.
+
+## Technology Stack
+
+The project relies entirely on modern serverless AWS architectures combined with the Puppeteer web-automation framework:
+
+- **Compute & Orchestration**: AWS Lambda (Node.js runtime), Amazon EventBridge (Cron Jobs), and Amazon API Gateway (REST endpoints).
+- **Data Storage**: Amazon DynamoDB (NoSQL data storage) and Amazon S3 (Object storage for webpage screenshots).
+- **Automation Framework**: Puppeteer (headless web scraper) running via the `chrome-aws-lambda` package.
+
 <img src="./assets/mbx-aws-lambda-puppeteer.jpg" width="800">
 
 **Background**
@@ -114,6 +124,10 @@ In your S3 bucket, look for a file that corresponds to the one listed in the Dyn
 If you open the image file, you should see the webpage captured image for the stock.
 
 <img src="./assets/mbx-s3-00001.png" width="600">
+
+## Summary
+
+In summary, the `mbx-getstock-aws-puppeteer` repository acts as a robust blueprint for extracting structured web data and capturing visual snapshots using an elastic, serverless architecture. By combining AWS Lambda with Puppeteer, this pattern drastically reduces the maintenance footprint compared to managing persistent web scraping servers. The system natively integrates with DynamoDB and S3 for scalable data storage, making it incredibly effective for building historical datasets and feeding analytical pipelines without manual overhead.
 
 **References**
 * Puppeteer https://github.com/puppeteer/puppeteer
